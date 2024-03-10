@@ -1,4 +1,4 @@
-package org.acme.example;
+package org.acme.front;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;

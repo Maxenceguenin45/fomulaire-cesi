@@ -67,6 +67,11 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>io.quarkus</groupId>
+          <artifactId>quarkus-hibernate-orm-panache</artifactId>
+          <version>3.7.3</version>
+      </dependency>
   </dependencies>
   <repositories>
     <repository>
