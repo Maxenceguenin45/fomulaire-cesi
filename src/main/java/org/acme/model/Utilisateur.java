@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -24,8 +25,8 @@ public class Utilisateur extends PanacheEntityBase {
     @Column(nullable = true)
     private String telephone;
 
-    @Column(nullable = false)
-    private Date date_naissance;
+    @Column(columnDefinition = "datetime")
+    private LocalDateTime date_naissance;
 
 
     private enum sexe{
@@ -78,14 +79,6 @@ public class Utilisateur extends PanacheEntityBase {
         this.telephone = tel;
     }
 
-    public Date getDate_naissance() {
-        return date_naissance;
-    }
-
-    public void setDate_naissance(Date date_naissance) {
-        this.date_naissance = date_naissance;
-    }
-
     public String getAdresse() {
         return adresse;
     }
@@ -100,5 +93,13 @@ public class Utilisateur extends PanacheEntityBase {
 
     public void setCode_postal(String code_postal) {
         this.code_postal = code_postal;
+    }
+
+    public LocalDateTime getDate_naissance() {
+        return date_naissance;
+    }
+
+    public void setDate_naissance(LocalDateTime date_naissance) {
+        this.date_naissance = date_naissance;
     }
 }

@@ -10,14 +10,15 @@ import org.acme.model.Utilisateur;
 
 
 @Route("utilisateur")
-public class UtilisateurView extends VerticalLayout {
-        public UtilisateurView() {
+public class GrilUsagerNonValiderView extends VerticalLayout {
+        public GrilUsagerNonValiderView() {
             Tabs tabs = new Tabs();
             Tab tab1 = new Tab(new RouterLink("Main", MainView.class));
-            Tab tab2 = new Tab(new RouterLink("Grid", UtilisateurView.class));
+            Tab tab2 = new Tab(new RouterLink("Usager", GrilUsagerNonValiderView.class));
             //Tab tab3 = new Tab(new RouterLink("State", StateView.class));
             tabs.add(tab1, tab2);
             tabs.setSelectedTab(tab2);
+
             add(tabs);
             Grid<Utilisateur> grid = new Grid<>();
             grid.setItems(Utilisateur.listAll());
