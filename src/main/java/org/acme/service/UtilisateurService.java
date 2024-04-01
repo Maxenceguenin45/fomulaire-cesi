@@ -6,11 +6,14 @@ import jakarta.transaction.Transactional;
 import org.acme.model.Utilisateur;
 
 import java.util.List;
+
 @ApplicationScoped
 public class UtilisateurService {
+
     public List<Utilisateur> listAll() {
         return Utilisateur.listAll();
     }
+
     @Transactional
     public Utilisateur addUtilisateur(Utilisateur reponseUtilisateur) {
         Utilisateur utilisateur = new Utilisateur();
@@ -24,6 +27,5 @@ public class UtilisateurService {
         utilisateur.persist();
         return utilisateur;
     }
-
 }
 

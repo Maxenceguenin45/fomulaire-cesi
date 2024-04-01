@@ -8,7 +8,6 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import org.acme.model.Utilisateur;
 
-
 @Route("utilisateur")
 public class GrilUsagerNonValiderView extends VerticalLayout {
         public GrilUsagerNonValiderView() {
@@ -18,8 +17,8 @@ public class GrilUsagerNonValiderView extends VerticalLayout {
             //Tab tab3 = new Tab(new RouterLink("State", StateView.class));
             tabs.add(tab1, tab2);
             tabs.setSelectedTab(tab2);
-
             add(tabs);
+
             Grid<Utilisateur> grid = new Grid<>();
             grid.setItems(Utilisateur.listAll());
             grid.addColumn(Utilisateur::getId).setHeader("ID");
@@ -32,5 +31,4 @@ public class GrilUsagerNonValiderView extends VerticalLayout {
             grid.addColumn(Utilisateur::getCode_postal).setHeader("Code postal");
             add(grid);
         }
-
 }

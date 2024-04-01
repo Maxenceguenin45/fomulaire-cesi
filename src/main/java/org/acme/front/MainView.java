@@ -2,21 +2,15 @@ package org.acme.front;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
-import com.vaadin.flow.component.tabs.Tab;
-import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.RouterLink;
 import jakarta.inject.Inject;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import org.acme.model.Utilisateur;
-import org.acme.service.GreetService;
 import org.acme.service.UtilisateurService;
-
-
 
 /**
  * The main view contains a button and a click listener.
@@ -25,12 +19,13 @@ import org.acme.service.UtilisateurService;
 public class MainView extends VerticalLayout {
 
     @Inject
-    GreetService greetService;
-@Inject
-UtilisateurService utilisateurService;
+    UtilisateurService utilisateurService;
+
     public MainView() {
+
         VerticalLayout layout = new VerticalLayout();
         Utilisateur utilisateur = new Utilisateur();
+
         TextField nom = new TextField("Nom");
         TextField prenom = new TextField("Prenom");
         DatePicker date_naissance = new DatePicker("Date de naissance");
@@ -38,6 +33,7 @@ UtilisateurService utilisateurService;
         NumberField telephone = new NumberField("Telephone");
         EmailField email = new EmailField("Email");
         NumberField code_postal = new NumberField("Code postal");
+
         layout.add(nom, prenom, date_naissance, adresse, telephone, email, code_postal);
         add(layout);
 

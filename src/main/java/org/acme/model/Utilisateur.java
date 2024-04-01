@@ -1,4 +1,5 @@
 package org.acme.model;
+
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,32 +11,35 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-
 public class Utilisateur extends PanacheEntityBase {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
-   private int id;
+    private int id;
+
     @Column(nullable = false)
     private String nom;
+
     @Column(nullable = false)
     private String prenom;
+
     @Column(nullable = false, unique = true)
     private String email;
+
     @Column(nullable = true)
     private String telephone;
 
     @Column(columnDefinition = "datetime")
     private LocalDateTime date_naissance;
 
-
     private enum sexe{
-       M,
-        F,
-        autre
+       M, F, autre
     }
+
     @Column(nullable = false)
     private String adresse;
+
     @Column(nullable = false)
     private String code_postal;
 
