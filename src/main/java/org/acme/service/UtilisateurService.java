@@ -27,5 +27,7 @@ public class UtilisateurService {
         utilisateur.persist();
         return utilisateur;
     }
+    public Utilisateur getUtilisateurById(int id) {
+        return Utilisateur.findById(id);}
 }
 
