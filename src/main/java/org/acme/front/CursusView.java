@@ -8,7 +8,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import jakarta.inject.Inject;
-import org.acme.model.Situation_Scolaire;
+import org.acme.model.Cursus;
 import org.acme.model.Utilisateur;
 import org.acme.service.CursusService;
 import org.acme.service.UtilisateurService;
@@ -34,7 +34,7 @@ public class CursusView extends VerticalLayout {
         Button saveButton = new Button("Enregistrer", event -> {
             Utilisateur utilisateur = utilisateurService.getUtilisateurById(userIdField.getValue());
             if (utilisateur != null) {
-                Situation_Scolaire cursus = new Situation_Scolaire();
+                Cursus cursus = new Cursus();
                 cursus.setId_utilisateur(utilisateur);
                 cursus.setDernier_diplome(diplomeField.getValue());
                 cursus.setEtablissement(etablissementField.getValue());

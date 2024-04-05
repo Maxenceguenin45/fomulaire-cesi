@@ -11,7 +11,7 @@ import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import jakarta.inject.Inject;
-import org.acme.model.Situation_Scolaire;
+import org.acme.model.Cursus;
 import org.acme.model.Utilisateur;
 import org.acme.service.UtilisateurService;
 
@@ -39,7 +39,7 @@ public class GrilUsagerNonValiderView extends VerticalLayout {
         grid.addColumn(Utilisateur::getEmail).setHeader("Email").setSortable(true);
         grid.addComponentColumn(utilisateur -> {
             Button detailButton = new Button("Détails Cursus", clickEvent -> {
-                Situation_Scolaire cursus = Situation_Scolaire.findByUtilisateurId(utilisateur.getId());
+                Cursus cursus = Cursus.findByUtilisateurId(utilisateur.getId());
                 showCursusDetailsDialog(cursus);
             });
 
@@ -54,7 +54,7 @@ public class GrilUsagerNonValiderView extends VerticalLayout {
 
         add(grid);
     }
-    private void showCursusDetailsDialog(Situation_Scolaire cursus) {
+    private void showCursusDetailsDialog(Cursus cursus) {
         Dialog dialog = new Dialog();
         if (cursus != null) {
             Div diplomeDiv = new Div(new Text("Dernier diplôme : " + cursus.getDernier_diplome()));

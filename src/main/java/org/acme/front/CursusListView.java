@@ -9,7 +9,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
-import org.acme.model.Situation_Scolaire;
+import org.acme.model.Cursus;
 import org.acme.service.CursusService;
 
 @Route("cursus-list")
@@ -17,7 +17,7 @@ public class CursusListView extends VerticalLayout {
     @Inject
     private CursusService cursusService;
 
-    private Grid<Situation_Scolaire> grid = new Grid<>(Situation_Scolaire.class);
+    private Grid<Cursus> grid = new Grid<>(Cursus.class);
 
     public CursusListView() {
         add(grid);
@@ -31,7 +31,7 @@ public class CursusListView extends VerticalLayout {
         grid.addComponentColumn(cursus -> new Button("Détails", click -> showCursusDetailsDialog(cursus)))
                 .setHeader("Actions");
     }
-    private void showCursusDetailsDialog(Situation_Scolaire cursus) {
+    private void showCursusDetailsDialog(Cursus cursus) {
         Dialog dialog = new Dialog();
         dialog.add(new Div(new Text("Dernier diplôme: " + cursus.getDernier_diplome())));
         dialog.add(new Div(new Text("Établissement: " + cursus.getEtablissement())));

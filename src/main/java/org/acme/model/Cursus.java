@@ -4,13 +4,13 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
 @Entity
-public class Situation_Scolaire extends PanacheEntityBase {
+public class Cursus extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private int id;
     @ManyToOne
-    @JoinColumn(name = "id_utilisateur", nullable = false)
+    @JoinColumn(name = "utilisateur_id", nullable = false)
     private Utilisateur id_utilisateur;
     private String dernier_diplome;
     private String etablissement;
@@ -74,7 +74,7 @@ public class Situation_Scolaire extends PanacheEntityBase {
         this.duree = duree;
     }
 
-    public static Situation_Scolaire findByUtilisateurId(int id_utilisateur) {
+    public static Cursus findByUtilisateurId(int id_utilisateur) {
         return find("id_utilisateur", id_utilisateur).firstResult();
     }
 }
