@@ -27,7 +27,9 @@ public class MainView extends VerticalLayout {
         Tabs tabs = new Tabs();
         Tab tab1 = new Tab(new RouterLink("Main", MainView.class));
         Tab tab2 = new Tab(new RouterLink("Usager", GrilUsagerNonValiderView.class));
-        tabs.add(tab1, tab2);
+        Tab tab3 = new Tab(new RouterLink("Cursus", CursusView.class));
+        Tab tab4 = new Tab(new RouterLink("List", CursusListView.class));
+        tabs.add(tab1, tab2, tab3, tab4);
         tabs.setSelectedTab(tab2);
         add(tabs);
 

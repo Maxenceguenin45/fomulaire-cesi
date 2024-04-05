@@ -1,13 +1,9 @@
 package org.acme.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
+@Entity
 public class Situation_Scolaire extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,5 +72,9 @@ public class Situation_Scolaire extends PanacheEntityBase {
 
     public void setDuree(String duree) {
         this.duree = duree;
+    }
+
+    public static Situation_Scolaire findByUtilisateurId(int id_utilisateur) {
+        return find("id_utilisateur", id_utilisateur).firstResult();
     }
 }

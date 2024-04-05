@@ -26,5 +26,4 @@ public class CursusService {
        Utilisateur utiliateur = utilisateurService.getUtilisateurById(id);
        return Situation_Scolaire.find("id_utilisateur", utiliateur).firstResult();
     }
-
 }
