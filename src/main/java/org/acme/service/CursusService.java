@@ -1,6 +1,7 @@
 package org.acme.service;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 import org.acme.model.Cursus;
 import org.acme.model.Utilisateur;
 
@@ -12,6 +13,7 @@ public class CursusService {
     public List<Cursus> listAll() {
         return Cursus.listAll();
     }
+    @Transactional
     public Cursus createCursus(Cursus situationScolaire) {
         Cursus createdSituationScolaire = new Cursus();
         createdSituationScolaire.setDernier_diplome(situationScolaire.getDernier_diplome());
