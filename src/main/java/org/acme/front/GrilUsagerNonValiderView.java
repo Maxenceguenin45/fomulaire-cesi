@@ -5,6 +5,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
@@ -22,6 +24,20 @@ public class GrilUsagerNonValiderView extends VerticalLayout {
     UtilisateurService utilisateurService;
 
     public GrilUsagerNonValiderView() {
+        HorizontalLayout topBar = new HorizontalLayout();
+        topBar.setWidthFull();
+        topBar.setPadding(true);
+        topBar.getStyle().set("background-color", "#f8f9fa");
+
+        Image logo = new Image("./META-INF/resources/images/logo.png", "Logo");
+        //logo.setHeight("50px");
+
+        topBar.add(logo);
+
+        topBar.setDefaultVerticalComponentAlignment(Alignment.CENTER);
+
+        add(topBar);
+
         Tabs tabs = new Tabs();
         Tab tab1 = new Tab(new RouterLink("Main", MainView.class));
         Tab tab2 = new Tab(new RouterLink("Utilisateurs", GrilUsagerNonValiderView.class));
@@ -30,6 +46,7 @@ public class GrilUsagerNonValiderView extends VerticalLayout {
         tabs.add(tab1, tab2, tab3, tab4);
         tabs.setSelectedTab(tab2);
         add(tabs);
+        topBar.add(tabs);
 
         Grid<Utilisateur> grid = new Grid<>();
         grid.setItems(Utilisateur.listAll());
@@ -46,7 +63,6 @@ public class GrilUsagerNonValiderView extends VerticalLayout {
             return detailButton;
         }).setHeader("Détails Cursus");
 
-
         grid.addComponentColumn(user -> {
             Button detailButton = new Button("Détails", event -> showUserDetailsDialog(user));
             return detailButton;
@@ -54,6 +70,7 @@ public class GrilUsagerNonValiderView extends VerticalLayout {
 
         add(grid);
     }
+
     private void showCursusDetailsDialog(Cursus cursus) {
         Dialog dialog = new Dialog();
         if (cursus != null) {

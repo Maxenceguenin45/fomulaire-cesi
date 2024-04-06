@@ -16,6 +16,7 @@ public class CursusService {
     @Transactional
     public Cursus createCursus(Cursus situationScolaire) {
         Cursus createdSituationScolaire = new Cursus();
+        createdSituationScolaire.setId_utilisateur(situationScolaire.getId_utilisateur());
         createdSituationScolaire.setDernier_diplome(situationScolaire.getDernier_diplome());
         createdSituationScolaire.setEtablissement(situationScolaire.getEtablissement());
         createdSituationScolaire.setExperience_professionnelle(situationScolaire.getExperience_professionnelle());
@@ -24,6 +25,7 @@ public class CursusService {
         createdSituationScolaire.persist();
      return createdSituationScolaire;
     }
+
     public Cursus getSituationScolaireByIdUtilisateur(int id) {
        Utilisateur utiliateur = utilisateurService.getUtilisateurById(id);
        return Cursus.find("id_utilisateur", utiliateur).firstResult();
