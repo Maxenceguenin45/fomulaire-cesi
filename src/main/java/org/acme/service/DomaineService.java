@@ -1,5 +1,6 @@
 package org.acme.service;
 
+import jakarta.transaction.Transactional;
 import org.acme.model.Domaine_Fomation;
 import org.acme.model.Cursus;
 import org.acme.model.Utilisateur;
@@ -11,6 +12,7 @@ public class DomaineService {
     public List<Domaine_Fomation> listAll() {
         return Cursus.listAll();
     }
+    @Transactional
     public Domaine_Fomation createCursus(Domaine_Fomation domaineFomation) {
         Domaine_Fomation newdomaineFomation = new Domaine_Fomation();
         newdomaineFomation.setDomaine(domaineFomation.getDomaine());
