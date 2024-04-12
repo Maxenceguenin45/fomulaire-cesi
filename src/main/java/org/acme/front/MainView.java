@@ -37,10 +37,10 @@ public class MainView extends VerticalLayout {
         Utilisateur utilisateur = new Utilisateur();
 
         TextField nom = new TextField("Nom");
-        nom.setPlaceholder("Jean-Marie");
+        nom.setPlaceholder("Marie");
 
         TextField prenom = new TextField("Prenom");
-        prenom.setPlaceholder("LePen");
+        prenom.setPlaceholder("Pen");
 
         DatePicker date_naissance = new DatePicker("Date de naissance");
 
