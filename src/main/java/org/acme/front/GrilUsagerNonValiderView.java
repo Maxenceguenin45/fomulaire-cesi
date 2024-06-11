@@ -1,7 +1,9 @@
 package org.acme.front;
 
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
@@ -15,6 +17,7 @@ import com.vaadin.flow.router.RouterLink;
 import jakarta.inject.Inject;
 import org.acme.model.Cursus;
 import org.acme.model.Utilisateur;
+import org.acme.service.CursusService;
 import org.acme.service.UtilisateurService;
 
 @Route("utilisateur")
@@ -23,32 +26,19 @@ public class GrilUsagerNonValiderView extends VerticalLayout {
     @Inject
     UtilisateurService utilisateurService;
 
+    @Inject
+    CursusService cursusService;
+
     public GrilUsagerNonValiderView() {
-        HorizontalLayout topBar = new HorizontalLayout();
-        topBar.setWidthFull();
-        topBar.setPadding(true);
-        topBar.getStyle().set("background-color", "#f8f9fa");
 
-        Image logo = new Image("./META-INF/resources/images/logo.png", "Logo");
-        //logo.setHeight("50px");
+        setSizeFull();
+        setPadding(false);
 
-        topBar.add(logo);
-
-        topBar.setDefaultVerticalComponentAlignment(Alignment.CENTER);
-
-        add(topBar);
-
-        Tabs tabs = new Tabs();
-        Tab tab1 = new Tab(new RouterLink("Main", MainView.class));
-        Tab tab2 = new Tab(new RouterLink("Utilisateurs", GrilUsagerNonValiderView.class));
-        Tab tab3 = new Tab(new RouterLink("Cursus", CursusView.class));
-        Tab tab4 = new Tab(new RouterLink("List", CursusListView.class));
-        tabs.add(tab1, tab2, tab3, tab4);
-        tabs.setSelectedTab(tab2);
-        add(tabs);
-        topBar.add(tabs);
+        BarMenu menu = new BarMenu();
+        add(menu);
 
         Grid<Utilisateur> grid = new Grid<>();
+        grid.setSizeFull();
         grid.setItems(Utilisateur.listAll());
 
         grid.addColumn(Utilisateur::getNom).setHeader("Nom").setSortable(true);
@@ -56,7 +46,7 @@ public class GrilUsagerNonValiderView extends VerticalLayout {
         grid.addColumn(Utilisateur::getEmail).setHeader("Email").setSortable(true);
         grid.addComponentColumn(utilisateur -> {
             Button detailButton = new Button("Détails Cursus", clickEvent -> {
-                Cursus cursus = Cursus.findByUtilisateurId(utilisateur.getId());
+                Cursus cursus = this.cursusService.getCursusByIdUtilisateur(utilisateur.getId());
                 showCursusDetailsDialog(cursus);
             });
 
@@ -74,8 +64,12 @@ public class GrilUsagerNonValiderView extends VerticalLayout {
     private void showCursusDetailsDialog(Cursus cursus) {
         Dialog dialog = new Dialog();
         if (cursus != null) {
-            Div diplomeDiv = new Div(new Text("Dernier diplôme : " + cursus.getDernier_diplome()));
-            Div etablissementDiv = new Div(new Text("Établissement : " + cursus.getEtablissement()));
+            String dernierDiplome = cursus.getDernier_diplome() != null ? cursus.getDernier_diplome() : "Non renseigné";
+            String etablissement = cursus.getEtablissement() != null ? cursus.getEtablissement() : "Non renseigné";
+
+            Div diplomeDiv = new Div(new Text("Dernier diplôme : " + dernierDiplome));
+            Div etablissementDiv = new Div(new Text("Établissement : " + etablissement));
+
             dialog.add(diplomeDiv, etablissementDiv);
         } else {
             dialog.add(new Text("Aucun cursus trouvé pour cet utilisateur."));
@@ -83,7 +77,9 @@ public class GrilUsagerNonValiderView extends VerticalLayout {
         dialog.open();
     }
 
+
     private void showUserDetailsDialog(Utilisateur user) {
+
         Dialog dialog = new Dialog();
 
         dialog.add(new Div(new Text("Nom : " + user.getNom())));
@@ -93,22 +89,6 @@ public class GrilUsagerNonValiderView extends VerticalLayout {
         dialog.add(new Div(new Text("Date de naissance : " + user.getDate_naissance())));
         dialog.add(new Div(new Text("Adresse : " + user.getAdresse())));
         dialog.add(new Div(new Text("Code postal : " + user.getCode_postal())));
-       /* if (cursus != null) {
-            // Créer un bouton pour afficher les détails du cursus
-            Button showCursusDetails = new Button("Afficher détails du cursus", event -> {
-                Dialog cursusDialog = new Dialog();
-                cursusDialog.add(new Div(new Text("Dernier diplôme : " + cursus.getDernier_diplome())));
-                cursusDialog.add(new Div(new Text("Etablissement : " + cursus.getEtablissement())));
-                cursusDialog.add(new Div(new Text("Expérience professionnelle : " + cursus.getExperience_professionnelle())));
-                cursusDialog.add(new Div(new Text("Poste occupé : " + cursus.getPoste_occupe())));
-                cursusDialog.add(new Div(new Text("Durée : " + cursus.getDuree())));
-                cursusDialog.open();
-            });
-            dialog.add(showCursusDetails);
-        } else {
-            dialog.add(new Div(new Text("Cursus : Non défini")));
-        }
-*/
 
         dialog.open();
     }

@@ -20,11 +20,14 @@ public class CursusListView extends VerticalLayout {
     private Grid<Cursus> grid = new Grid<>(Cursus.class);
 
     public CursusListView() {
+        BarMenu menu = new BarMenu();
+        add(menu);
         add(grid);
     }
 
     @PostConstruct
     private void init() {
+
         grid.setColumns("dernier_diplome", "etablissement", "experience_professionnelle", "poste_occupe", "duree");
         grid.setItems(cursusService.listAll());
 

@@ -26,7 +26,7 @@ public class CursusService {
      return createdSituationScolaire;
     }
 
-    public Cursus getSituationScolaireByIdUtilisateur(int id) {
+    public Cursus getCursusByIdUtilisateur(int id) {
        Utilisateur utiliateur = utilisateurService.getUtilisateurById(id);
        return Cursus.find("id_utilisateur", utiliateur).firstResult();
     }

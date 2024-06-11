@@ -4,15 +4,12 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.tabs.Tab;
-import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.RouterLink;
-import jakarta.inject.Inject;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import jakarta.inject.Inject;
 import org.acme.model.Utilisateur;
 import org.acme.service.UtilisateurService;
 
@@ -24,14 +21,8 @@ public class MainView extends VerticalLayout {
 
     public MainView() {
 
-        Tabs tabs = new Tabs();
-        Tab tab1 = new Tab(new RouterLink("Main", MainView.class));
-        Tab tab2 = new Tab(new RouterLink("Usager", GrilUsagerNonValiderView.class));
-        Tab tab3 = new Tab(new RouterLink("Cursus", CursusView.class));
-        Tab tab4 = new Tab(new RouterLink("List", CursusListView.class));
-        tabs.add(tab1, tab2, tab3, tab4);
-        tabs.setSelectedTab(tab2);
-        add(tabs);
+        BarMenu menu = new BarMenu();
+        add(menu);
 
         FormLayout formLayout = new FormLayout();
         Utilisateur utilisateur = new Utilisateur();

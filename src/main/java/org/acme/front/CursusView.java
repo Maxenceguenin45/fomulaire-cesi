@@ -24,6 +24,8 @@ public class CursusView extends VerticalLayout {
     private UtilisateurService utilisateurService;
 
     public CursusView() {
+        BarMenu menu = new BarMenu();
+        add(menu);
         IntegerField userIdField = new IntegerField("ID de l'utilisateur");
         TextField diplomeField = new TextField("Dernier diplôme");
         TextField etablissementField = new TextField("Établissement");
